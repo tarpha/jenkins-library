@@ -1,7 +1,7 @@
 def call(String name) {
     pipeline {
         environment { 
-            repository = "ghcr.io/tarpha/${workspace}"  //docker hub id와 repository 이름
+            repository = "ghcr.io/tarpha/${job_name}"  //docker hub id와 repository 이름
             dockerImage = '' 
         }
         agent any
