@@ -30,9 +30,22 @@ def call(String name) {
             }
         }
         post {
-            always {
-                cleanWs()
-                echo "END ${name}"
+            cleanup {
+                // cleanWs()
+                // echo "END ${name}"
+                /* clean up our workspace */
+                deleteDir()
+                /* clean up tmp directory */
+                dir("${workspace}@tmp") {
+                    deleteDir()
+                }
+                /* clean up script directory */
+                dir("${workspace}@script") {
+                    deleteDir()
+                }
+                dir("${workspace}@libs") {
+                    deleteDir()
+                }
             }
         }
     }
