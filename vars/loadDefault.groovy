@@ -13,7 +13,10 @@ def call(String name) {
             }
             stage('Build image') {
                 steps {
-                    script { 
+                    script {
+                        echo "${job_name}"
+                        echo "${BRANCH_NAME}"
+                        echo "${workspace}"
                         dockerImage = docker.build repository + ":$BUILD_NUMBER" 
                     }
                 }
