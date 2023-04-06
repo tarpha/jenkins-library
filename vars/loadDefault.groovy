@@ -2,7 +2,7 @@ def call(String name) {
     pipeline {
         environment { 
             repository = "ghcr.io/tarpha/${job_name}"  //docker hub id와 repository 이름
-            project = currentBuild.rawBuild.project
+            project = "${JOB_NAME.tokenize('/')[0]}"
             dockerImage = '' 
         }
         agent any
@@ -18,7 +18,7 @@ def call(String name) {
                         echo "${job_name}"
                         echo "${BRANCH_NAME}"
                         echo "${workspace}"
-                        echo "${project.displayName}"
+                        echo "${project}"
                         dockerImage = docker.build repository + ":$BUILD_NUMBER" 
                     }
                 }
