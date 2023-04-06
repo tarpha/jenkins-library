@@ -1,7 +1,7 @@
 def call(String name) {
     pipeline {
         environment { 
-            repository = "ghcr.io/tarpha/$JOB_NAME"  //docker hub id와 repository 이름
+            repository = "ghcr.io/tarpha/${workspace}"  //docker hub id와 repository 이름
             dockerImage = '' 
         }
         agent any
@@ -22,8 +22,8 @@ def call(String name) {
                 steps {
                     script {
                         docker.withRegistry('https://ghcr.io/tarpha', 'ghcr') {
-                            dockerImage.push("${env.BUILD_NUMBER}")
-                            dockerImage.push("0.0.1")
+                            dockerImage.push("${BRANCH_NAME}-${BUILD_NUMBER}")
+                            // dockerImage.push("0.0.1")
                         }
                     }
                 }
