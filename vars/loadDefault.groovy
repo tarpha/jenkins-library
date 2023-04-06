@@ -1,4 +1,4 @@
-def call() {
+def call(String name) {
     node {
         stage('Clone repository') {
             checkout scm
@@ -14,7 +14,7 @@ def call() {
         }
         stage('Clean') {
             deleteDir()
-            echo "End"
+            echo "End ${name}"
         }
     }
 }
