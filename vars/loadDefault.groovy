@@ -9,7 +9,7 @@ def call(String name) {
         stage('Push image') {
             docker.withRegistry('https://ghcr.io/tarpha', 'ghcr') {
             app.push("${env.BUILD_NUMBER}")
-            app.push("0.0.1")
+            // app.push("0.0.1")
             }
         }
         stage('Clean') {
