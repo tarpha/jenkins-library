@@ -19,6 +19,7 @@ def call(String name) {
                         echo "${BRANCH_NAME}"
                         echo "${workspace}"
                         echo "${projectName}"
+                        echo "${project.displayName}"
                         dockerImage = docker.build repository + ":$BUILD_NUMBER" 
                     }
                 }
